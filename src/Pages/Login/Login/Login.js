@@ -1,12 +1,14 @@
 import React, { useContext, useState } from 'react';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 const Login = () => {
   const [error, setError] = useState('');
   const {signIn} = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const handalSignIn = (e) =>{
     e.preventDefault();
     const form = e.target;
@@ -18,7 +20,7 @@ const Login = () => {
         console.log(user);
         form.reset();
         setError('');
-        navigate('/');
+        navigate(from, {replace: true});
       })
       .catch((error) => setError(error.message));
   }
