@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 
 const Register = () => {
-   const [error, setError] = useState(null);
+   const [error, setError] = useState('');
   const {createUser} = useContext(AuthContext);
   const navigate = useNavigate();
     const handalSubmit = (e) =>{
@@ -21,6 +21,7 @@ const Register = () => {
             const user = result.user;
             console.log(user);
             form.reset();
+            setError('')
             navigate('/');
           })
           .catch((error) => setError(error.message));

@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 const Login = () => {
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
   const {signIn} = useContext(AuthContext);
   const navigate = useNavigate();
   const handalSignIn = (e) =>{
@@ -17,6 +17,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         form.reset();
+        setError('');
         navigate('/');
       })
       .catch((error) => setError(error.message));
