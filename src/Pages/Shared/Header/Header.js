@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Image } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -10,7 +10,12 @@ import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import LeftSideNav from '../LeftSideNav/LeftSideNav';
 
 const Header = () => {
-  const {user} = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const handalLogout = ()=>{
+    logOut()
+      .then(() => {})
+      .catch((error) => console.errro(error));
+  }
     return (
       <Navbar
         collapseOnSelect
@@ -43,11 +48,31 @@ const Header = () => {
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
+              <Nav.Link href="#deets">
+                {user?.uid ? (
+                  <>
+                    <span className='me-2'>{user?.displayName}</span>
+                    <Button onClick={handalLogout} variant="light">
+                      Logout
+                    </Button>{" "}
+                  </>
+                ) : (
+                  <>
+                    <Link to="/login">Login</Link>
+                    <Link to="/register">Register</Link>
+                  </>
+                )}
+              </Nav.Link>
               <Nav.Link eventKey={2} href="#memes">
-                {
-                  user?.photoURL ? <Image style={{height: '30px'}} roundedCircle src={user?.photoURL}></Image> : <FaUserAlt></FaUserAlt>
-                }
+                {user?.photoURL ? (
+                  <Image
+                    style={{ height: "30px" }}
+                    roundedCircle
+                    src={user?.photoURL}
+                  ></Image>
+                ) : (
+                  <FaUserAlt></FaUserAlt>
+                )}
               </Nav.Link>
             </Nav>
             <div className="d-lg-none">
