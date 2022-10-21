@@ -1,13 +1,15 @@
 import React, { useContext, useState } from 'react';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 
 const Register = () => {
    const [error, setError] = useState('');
    const [accepted, setAccepted] = useState(false);
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser, updateUserProfile, verifyEmail } =
+    useContext(AuthContext);
   const navigate = useNavigate();
     const handalSubmit = (e) =>{
         e.preventDefault();
@@ -22,6 +24,8 @@ const Register = () => {
             const user = result.user;
             console.log(user);
             handalUserProfile(name, photoURL);
+            handalEmailVerification();
+            toast.success('Please Verify Your Email Address! if need check your spam folder')
             form.reset();
             setError('')
             navigate('/');
@@ -39,6 +43,11 @@ const Register = () => {
     }
     const handalAccepted = (e)=>{
       setAccepted(e.target.checked)
+    }
+    const handalEmailVerification = ()=>{
+      verifyEmail()
+        .then(() => {})
+        .catch((error) => setError(error.message));
     }
     return (
       <Form onSubmit={handalSubmit}>
