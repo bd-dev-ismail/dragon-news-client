@@ -48,10 +48,10 @@ const Header = () => {
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link href="#deets">
+              <>
                 {user?.uid ? (
                   <>
-                    <span className='me-2'>{user?.displayName}</span>
+                    <span className='me-2 d-flex justify-content-center align-items-center'>{user?.displayName}</span>
                     <Button onClick={handalLogout} variant="light">
                       Logout
                     </Button>{" "}
@@ -62,7 +62,7 @@ const Header = () => {
                     <Link to="/register">Register</Link>
                   </>
                 )}
-              </Nav.Link>
+              </>
               <Nav.Link eventKey={2} href="#memes">
                 {user?.photoURL ? (
                   <Image

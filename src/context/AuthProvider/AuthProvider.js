@@ -43,7 +43,9 @@ const AuthProvider = ({children}) => {
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{
             console.log('userinside state chagnge', currentUser);
-            setUser(currentUser);
+            if(currentUser === null || currentUser.emailVerified){
+                setUser(currentUser);
+            }
             setLoading(false);
         })
         return ()=>{
@@ -60,6 +62,7 @@ const AuthProvider = ({children}) => {
       loading,
       updateUserProfile,
       verifyEmail,
+      setLoading,
     };
     return (
         <AuthContext.Provider value={authInfo}>
