@@ -2,9 +2,9 @@ import React from 'react';
 
 const Footer = () => {
     return (
-      <div>
+      <div className='container'>
         <small>
-          <p>Copyright coming soon!</p>
+          <p className="text-center">Copyright coming soon!</p>
         </small>
       </div>
     );

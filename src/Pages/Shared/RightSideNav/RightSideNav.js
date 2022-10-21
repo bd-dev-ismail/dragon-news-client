@@ -34,6 +34,7 @@ const RightSideNav = () => {
             onClick={handalGoogleSignIn}
             className="mb-2"
             variant="outline-primary"
+            
           >
             {" "}
             <FaGoogle /> Log In With Google
