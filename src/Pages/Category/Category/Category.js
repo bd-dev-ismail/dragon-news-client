@@ -5,7 +5,7 @@ import NewsSummaryCard from '../../Shared/NewsSummaryCard/NewsSummaryCard';
 
 const Category = () => {
     const categoryNews = useLoaderData();
-    useTitle('category')
+    useTitle('Category')
     return (
       <div>
         <h3>This is category has {categoryNews.length} news</h3>

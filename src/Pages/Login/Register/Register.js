@@ -11,7 +11,7 @@ const Register = () => {
    const [accepted, setAccepted] = useState(false);
   const { createUser, updateUserProfile, verifyEmail } =
     useContext(AuthContext);
-    useTitle('register')
+    useTitle('|Register')
   const navigate = useNavigate();
     const handalSubmit = (e) =>{
         e.preventDefault();

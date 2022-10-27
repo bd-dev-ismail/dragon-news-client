@@ -11,7 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  useTitle('login')
+  useTitle('Login')
   const handalSignIn = (e) =>{
     e.preventDefault();
     const form = e.target;
